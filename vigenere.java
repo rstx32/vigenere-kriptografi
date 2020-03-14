@@ -1,10 +1,10 @@
 class vigenere{
     public static void main(String[] args) {
-        String plain = "restu indera";
-        String cipher = "yedhb iyrlrl";
-        String key = "halo";
+        String plain    = "restu indera";
+        String key      = "halo";
+        String cipher   = "yedhb iyrlrl";
         System.out.println("hasil enkripsi : " + plain + " = " + enkripsi(plain,key));
-        System.out.println("hasil dekripsi : " + cipher + " = ");
+        System.out.println("hasil dekripsi : " + cipher + " = " + dekripsi(cipher,key));
     }
 
     public static String enkripsi(String plain, String key){
@@ -38,50 +38,58 @@ class vigenere{
                 continue;
             }
             int x = (plain.charAt(i)-97) + (hasilKey.charAt(i)-97);
-            int y = (x%26)+97;
-            tampung[i]= (char)y;
+            if(x>26){
+                x=(x-26)+97;
+            }else{
+                x+=97;
+            }
+            tampung[i]= (char)x;
         }
 
         cipher = new String(tampung);
         return cipher;
     }
 
-    // public void dekripsi(String cipher, String key){
-    //     char[] tampungKey   = new char[cipher.length()];
-    //     char[] tampung      = new char[cipher.length()];
-    //     String hasilKey;
-    //     String plain;
+    public static String dekripsi(String cipher, String key){
+        char[] tampungKey   = new char[cipher.length()];
+        char[] tampung      = new char[cipher.length()];
+        String hasilKey;
+        String plain;
 
-    //     // menyesuaikan key dengan panjang cipher
-    //     for(int i=0, j=i; i<cipher.length(); i++){
-    //         // tambahkan spasi
-    //         if(cipher.charAt(i)==' '){
-    //             tampungKey[i]=' ';
-    //             continue;
-    //         }else{
-    //             tampungKey[i] = key.charAt(j);
-    //         }
+        // menyesuaikan key dengan panjang cipher
+        for(int i=0, j=i; i<cipher.length(); i++){
+            // tambahkan spasi
+            if(cipher.charAt(i)==' '){
+                tampungKey[i]=' ';
+                continue;
+            }else{
+                tampungKey[i] = key.charAt(j);
+            }
 
-    //         // ulang ke awal jika key sudah berakhir
-    //         if(j==key.length()-1)
-    //             j=0;
-    //         else
-    //             j++;
-    //     }
-    //     hasilKey = new String(tampungKey);
+            // ulang ke awal jika key sudah berakhir
+            if(j==key.length()-1)
+                j=0;
+            else
+                j++;
+        }
+        hasilKey = new String(tampungKey);
 
-    //     // enkripsi
-    //     for(int i=0; i<cipher.length(); i++){
-    //         if(hasilKey.charAt(i)==' '){
-    //             tampung[i]=' ';
-    //             continue;
-    //         }
-    //         int x = (cipher.charAt(i)-97) + (hasilKey.charAt(i)-97);
-    //         int y = (x%26)+97;
-    //         tampung[i]= (char)y;
-    //     }
+        // dekripsi
+        for(int i=0; i<cipher.length(); i++){
+            if(hasilKey.charAt(i)==' '){
+                tampung[i]=' ';
+                continue;
+            }
+            int x = (cipher.charAt(i)-97) - (hasilKey.charAt(i)-97);
+            if(x<0){
+                x+=123;
+            }else{
+                x+=97;
+            }
+            tampung[i]= (char)x;
+        }
 
-    //     plain = new String(tampung);
-    //     System.out.println(plain);
-    // }
+        plain = new String(tampung);
+        return plain;
+    }
 }
