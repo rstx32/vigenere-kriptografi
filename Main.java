@@ -6,7 +6,7 @@ class Main{
 
         Vigenere v = new Vigenere(plain,cipher,key);
         System.out.println("plain   : " + v.getPlain());
-        // System.out.println("cipher  : " + v.cipher);
-        // System.out.println("key     : " + v.key);
+        System.out.println("cipher  : " + v.getCipher());
+        System.out.println("key     : " + v.getKey());
     }
 }
