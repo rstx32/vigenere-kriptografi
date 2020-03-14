@@ -23,49 +23,55 @@ class Vigenere{
     }
 
     public static String enkripsi(String plain, String key){
-        char[] tampung = new char[plain.length()];
-        String hasilKey;
-        hasilKey = new String(adaptasiKey(key, plain));
+        if(cekAlfabet(plain)==true || cekAlfabet(key)==true){
+            return (new String("Hanya Boleh Alfabet Lowercase!"));
+        }else{
+            char[] tampung = new char[plain.length()];
+            String hasilKey;
+            hasilKey = new String(adaptasiKey(key, plain));
 
-        // enkripsi
-        for(int i=0; i<plain.length(); i++){
-            if(hasilKey.charAt(i)==' '){
-                tampung[i]=' ';
-                continue;
+            // enkripsi
+            for(int i=0; i<plain.length(); i++){
+                if(hasilKey.charAt(i)==' '){
+                    tampung[i]=' ';
+                    continue;
+                }
+                int x = (plain.charAt(i)-97) + (hasilKey.charAt(i)-97);
+                if(x>26)
+                    x=(x-26)+97;
+                else
+                    x+=97;
+                
+                tampung[i]= (char)x;
             }
-            int x = (plain.charAt(i)-97) + (hasilKey.charAt(i)-97);
-            if(x>26)
-                x=(x-26)+97;
-            else
-                x+=97;
-            
-            tampung[i]= (char)x;
+            return (new String(tampung));
         }
-
-        return (new String(tampung));
     }
 
     public static String dekripsi(String cipher, String key){
-        char[] tampung = new char[cipher.length()];
-        String hasilKey;
-        hasilKey = new String(adaptasiKey(key, cipher));
+        if(cekAlfabet(cipher)==true || cekAlfabet(key)==true){
+            return (new String("Hanya Boleh Alfabet Lowercase!"));
+        }else{    
+            char[] tampung = new char[cipher.length()];
+            String hasilKey;
+            hasilKey = new String(adaptasiKey(key, cipher));
 
-        // dekripsi
-        for(int i=0; i<cipher.length(); i++){
-            if(hasilKey.charAt(i)==' '){
-                tampung[i]=' ';
-                continue;
+            // dekripsi
+            for(int i=0; i<cipher.length(); i++){
+                if(hasilKey.charAt(i)==' '){
+                    tampung[i]=' ';
+                    continue;
+                }
+                int x = (cipher.charAt(i)-97) - (hasilKey.charAt(i)-97);
+                if(x<0)
+                    x+=123;
+                else
+                    x+=97;
+                
+                tampung[i]= (char)x;
             }
-            int x = (cipher.charAt(i)-97) - (hasilKey.charAt(i)-97);
-            if(x<0)
-                x+=123;
-            else
-                x+=97;
-            
-            tampung[i]= (char)x;
+            return (new String(tampung));
         }
-
-        return (new String(tampung));
     }
 
     public static String adaptasiKey(String key, String adaptasi){
@@ -90,7 +96,17 @@ class Vigenere{
             else
                 j++;
         }
-
         return (new String(tampungKey));
+    }
+
+    public static boolean cekAlfabet(String teks){
+        int[] cek = new int[teks.length()];
+        for(int i=0; i<teks.length(); i++){
+            cek[i] = teks.charAt(i);
+            if((cek[i]>122 || cek[i]<97) && cek[i]!=32){
+                return true;
+            }
+        }
+        return false;
     }
 }
