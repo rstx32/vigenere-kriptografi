@@ -1,35 +1,16 @@
 class vigenere{
     public static void main(String[] args) {
         String plain    = "saya adalah manusia";
-        String key      = "restu";
-        String cipher   = "jeqt uuedtb defnmze";
+        String key      = "restuindera";
+        String cipher   = "jeqt ulnoey mrrmlci";
         System.out.println("hasil enkripsi : " + plain + " = " + enkripsi(plain,key));
         System.out.println("hasil dekripsi : " + cipher + " = " + dekripsi(cipher,key));
     }
 
     public static String enkripsi(String plain, String key){
-        char[] tampungKey   = new char[plain.length()];
-        char[] tampung      = new char[plain.length()];
+        char[] tampung = new char[plain.length()];
         String hasilKey;
-        String cipher;
-
-        // menyesuaikan key dengan panjang plain
-        for(int i=0, j=i; i<plain.length(); i++){
-            // tambahkan spasi
-            if(plain.charAt(i)==' '){
-                tampungKey[i]=' ';
-                continue;
-            }else{
-                tampungKey[i] = key.charAt(j);
-            }
-
-            // ulang ke awal jika key sudah berakhir
-            if(j==key.length()-1)
-                j=0;
-            else
-                j++;
-        }
-        hasilKey = new String(tampungKey);
+        hasilKey = new String(adaptasiKey(key, plain));
 
         // enkripsi
         for(int i=0; i<plain.length(); i++){
@@ -46,33 +27,13 @@ class vigenere{
             tampung[i]= (char)x;
         }
 
-        cipher = new String(tampung);
-        return cipher;
+        return (new String(tampung));
     }
 
     public static String dekripsi(String cipher, String key){
-        char[] tampungKey   = new char[cipher.length()];
-        char[] tampung      = new char[cipher.length()];
+        char[] tampung = new char[cipher.length()];
         String hasilKey;
-        String plain;
-
-        // menyesuaikan key dengan panjang cipher
-        for(int i=0, j=i; i<cipher.length(); i++){
-            // tambahkan spasi
-            if(cipher.charAt(i)==' '){
-                tampungKey[i]=' ';
-                continue;
-            }else{
-                tampungKey[i] = key.charAt(j);
-            }
-
-            // ulang ke awal jika key sudah berakhir
-            if(j==key.length()-1)
-                j=0;
-            else
-                j++;
-        }
-        hasilKey = new String(tampungKey);
+        hasilKey = new String(adaptasiKey(key, cipher));
 
         // dekripsi
         for(int i=0; i<cipher.length(); i++){
@@ -89,7 +50,32 @@ class vigenere{
             tampung[i]= (char)x;
         }
 
-        plain = new String(tampung);
-        return plain;
+        return (new String(tampung));
+    }
+
+    public static String adaptasiKey(String key, String adaptasi){
+        char[] tampungKey   = new char[adaptasi.length()];
+
+        // menyesuaikan key dengan panjang adaptasi
+        for(int i=0, j=i; i<adaptasi.length(); i++){
+            // tambahkan spasi
+            if(adaptasi.charAt(i)==' '){
+                tampungKey[i]=' ';
+                continue;
+            }else{
+                if(key.charAt(j)==' '){
+                    return new String("key tidak boleh ada spasi!");
+                }
+                tampungKey[i] = key.charAt(j);                
+            }
+
+            // ulang ke awal jika key sudah berakhir
+            if(j==key.length()-1)
+                j=0;
+            else
+                j++;
+        }
+
+        return (new String(tampungKey));
     }
 }
