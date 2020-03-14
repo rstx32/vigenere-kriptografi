@@ -1,10 +1,26 @@
-class vigenere{
+class Vigenere{
+    private String cipher;
+    private String plain;
+    private String key;
+
+    public Vigenere(String plain, String cipher, String key){
+        super();
+        this.plain = enkripsi(plain, key);
+        this.cipher = dekripsi(cipher, key);
+        this.key = key;
+    }
+
     public static void main(String[] args) {
         String plain    = "saya adalah manusia";
         String key      = "restuindera";
         String cipher   = "jeqt ulnoey mrrmlci";
-        System.out.println("hasil enkripsi : " + plain + " = " + enkripsi(plain,key));
-        System.out.println("hasil dekripsi : " + cipher + " = " + dekripsi(cipher,key));
+
+        Vigenere v = new Vigenere(plain,cipher,key);
+        System.out.println("plain   : " + v.plain);
+        System.out.println("cipher  : " + v.cipher);
+        System.out.println("key     : " + v.key);
+        // System.out.println("hasil enkripsi : " + plain + " = " + enkripsi(plain,key));
+        // System.out.println("hasil dekripsi : " + cipher + " = " + dekripsi(cipher,key));
     }
 
     public static String enkripsi(String plain, String key){
