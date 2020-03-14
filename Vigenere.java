@@ -10,17 +10,16 @@ class Vigenere{
         this.key = key;
     }
 
-    public static void main(String[] args) {
-        String plain    = "saya adalah manusia";
-        String key      = "restuindera";
-        String cipher   = "jeqt ulnoey mrrmlci";
+    public String getPlain(){
+        return this.plain;
+    }
 
-        Vigenere v = new Vigenere(plain,cipher,key);
-        System.out.println("plain   : " + v.plain);
-        System.out.println("cipher  : " + v.cipher);
-        System.out.println("key     : " + v.key);
-        // System.out.println("hasil enkripsi : " + plain + " = " + enkripsi(plain,key));
-        // System.out.println("hasil dekripsi : " + cipher + " = " + dekripsi(cipher,key));
+    public String getCipher(){
+        return this.cipher;
+    }
+
+    public String getKey(){
+        return this.key;
     }
 
     public static String enkripsi(String plain, String key){
