@@ -5,12 +5,12 @@ class Vigenere{
 
     public Vigenere(String plain, String cipher, String key){
         super();
-        if(plain==null){
-            this.plain=null;
-            this.cipher = dekripsi(cipher, key);
-        }else if(cipher==null){
-            this.cipher=null;
-            this.plain = enkripsi(plain, key);
+        if(cipher==null){
+            this.plain = plain;
+            this.cipher = enkripsi(plain, key);
+        }else if(plain==null){
+            this.cipher = cipher;
+            this.plain = dekripsi(cipher, key);
         }
         this.key = key;
     }
