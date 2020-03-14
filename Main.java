@@ -4,7 +4,7 @@ class Main{
         String key      = "restuindera";
         String cipher   = "jeqt ulnoey mrrmlci";
 
-        Vigenere v = new Vigenere(plain,cipher,key);
+        Vigenere v = new Vigenere(null,cipher,key);
         System.out.println("plain   : " + v.getPlain());
         System.out.println("cipher  : " + v.getCipher());
         System.out.println("key     : " + v.getKey());

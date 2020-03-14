@@ -5,8 +5,13 @@ class Vigenere{
 
     public Vigenere(String plain, String cipher, String key){
         super();
-        this.plain = enkripsi(plain, key);
-        this.cipher = dekripsi(cipher, key);
+        if(plain==null){
+            this.plain=null;
+            this.cipher = dekripsi(cipher, key);
+        }else if(cipher==null){
+            this.cipher=null;
+            this.plain = enkripsi(plain, key);
+        }
         this.key = key;
     }
 
@@ -51,7 +56,7 @@ class Vigenere{
     public static String dekripsi(String cipher, String key){
         if(cekAlfabet(cipher)==true || cekAlfabet(key)==true){
             return (new String("Hanya Boleh Alfabet Lowercase!"));
-        }else{    
+        }else{
             char[] tampung = new char[cipher.length()];
             String hasilKey;
             hasilKey = new String(adaptasiKey(key, cipher));
