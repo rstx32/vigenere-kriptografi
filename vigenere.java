@@ -1,8 +1,10 @@
 class vigenere{
     public static void main(String[] args) {
         String plain = "restu indera";
+        String cipher = "yedhb iyrlrl";
         String key = "halo";
-        System.out.println("hasil enkripsi : " + enkripsi(plain,key));
+        System.out.println("hasil enkripsi : " + plain + " = " + enkripsi(plain,key));
+        System.out.println("hasil dekripsi : " + cipher + " = ");
     }
 
     public static String enkripsi(String plain, String key){
