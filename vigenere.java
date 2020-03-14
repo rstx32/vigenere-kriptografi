@@ -1,8 +1,8 @@
 class vigenere{
     public static void main(String[] args) {
-        String plain    = "restu indera";
-        String key      = "halo";
-        String cipher   = "yedhb iyrlrl";
+        String plain    = "saya adalah manusia";
+        String key      = "restu";
+        String cipher   = "jeqt uuedtb defnmze";
         System.out.println("hasil enkripsi : " + plain + " = " + enkripsi(plain,key));
         System.out.println("hasil dekripsi : " + cipher + " = " + dekripsi(cipher,key));
     }
@@ -38,11 +38,11 @@ class vigenere{
                 continue;
             }
             int x = (plain.charAt(i)-97) + (hasilKey.charAt(i)-97);
-            if(x>26){
+            if(x>26)
                 x=(x-26)+97;
-            }else{
+            else
                 x+=97;
-            }
+            
             tampung[i]= (char)x;
         }
 
@@ -81,11 +81,11 @@ class vigenere{
                 continue;
             }
             int x = (cipher.charAt(i)-97) - (hasilKey.charAt(i)-97);
-            if(x<0){
+            if(x<0)
                 x+=123;
-            }else{
+            else
                 x+=97;
-            }
+            
             tampung[i]= (char)x;
         }
 
